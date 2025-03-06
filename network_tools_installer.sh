@@ -31,10 +31,11 @@ show_menu() {
     echo -e "${YELLOW}6.${PLAIN} 安装 warp"
     echo -e "${YELLOW}7.${PLAIN} 全部安装"
     echo -e "${YELLOW}8.${PLAIN} 查看安装命令"
+    echo -e "${YELLOW}9.${PLAIN} 卸载脚本"
     echo -e "${YELLOW}99.${PLAIN} 安装常用工具"
     echo -e "${YELLOW}0.${PLAIN} 退出脚本"
     echo ""
-    read -p "请输入数字 [0-8]: " num
+    read -p "请输入数字 [0-9]: " num
 }
 
 # 安装 sing-box
@@ -135,6 +136,26 @@ install_common_tools() {
     main
 }
 
+# 卸载脚本
+uninstall_script() {
+    echo -e "${YELLOW}确定要卸载网络工具安装脚本吗？[y/n]${PLAIN}"
+    read -p "" confirm
+    if [[ $confirm == "y" || $confirm == "Y" ]]; then
+        echo -e "${GREEN}开始卸载脚本...${PLAIN}"
+        # 删除可能存在的临时文件
+        rm -f snell.sh menu.sh hysteria.sh
+        # 删除脚本自身
+        rm -f "$0"
+        echo -e "${GREEN}脚本已成功卸载！${PLAIN}"
+        exit 0
+    else
+        echo -e "${GREEN}已取消卸载操作${PLAIN}"
+        echo ""
+        read -p "按回车键返回主菜单" enter
+        main
+    fi
+}
+
 # 主程序
 main() {
     clear_screen
@@ -148,9 +169,11 @@ main() {
         5) install_snell ;;  
         6) install_warp ;;  
         7) install_all ;;  
+        8) echo "功能待实现" && read -p "按回车键返回主菜单" enter && main ;;
+        9) uninstall_script ;;
         99) install_common_tools ;;
         0) exit 0 ;;  
-        *) echo -e "${RED}请输入正确的数字 [0-7]${PLAIN}" 
+        *) echo -e "${RED}请输入正确的数字 [0-9]${PLAIN}" 
            echo ""
            read -p "按回车键返回主菜单" enter
            main ;;
