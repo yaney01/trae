@@ -139,3 +139,55 @@ uninstall_script() {
         # 删除可能存在的临时文件
         rm -f snell.sh menu.sh hysteria.sh
         # 删除脚本
+        rm -f $0
+        echo -e "${GREEN}脚本卸载完成${PLAIN}"
+    else
+        echo -e "${GREEN}已取消卸载${PLAIN}"
+    fi
+    echo ""
+    read -p "按回车键返回主菜单" enter
+    main
+}
+
+# 显示安装命令
+show_commands() {
+    echo -e "${GREEN}=== 网络工具安装命令 ===${PLAIN}"
+    echo -e "${YELLOW}sing-box:${PLAIN} bash <(wget -qO- https://raw.githubusercontent.com/fscarmen/sing-box/main/sing-box.sh)"
+    echo -e "${YELLOW}3x-ui:${PLAIN} bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)"
+    echo -e "${YELLOW}hysteria2:${PLAIN} wget -N --no-check-certificate https://raw.githubusercontent.com/Misaka-blog/hysteria-install/main/hy2/hysteria.sh && bash hysteria.sh"
+    echo -e "${YELLOW}trojan-go:${PLAIN} bash <(curl -sSL \"https://raw.githubusercontent.com/veip007/hj/main/trojan-go.sh\")"
+    echo -e "${YELLOW}snell:${PLAIN} wget -O snell.sh --no-check-certificate https://git.io/Snell.sh && chmod +x snell.sh && ./snell.sh"
+    echo -e "${YELLOW}warp:${PLAIN} wget -N https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh && bash menu.sh"
+    echo ""
+    read -p "按回车键返回主菜单" enter
+    main
+}
+
+# 主函数
+main() {
+    clear_screen
+    show_menu
+    case $num in
+        1) install_singbox ;;
+        2) install_3xui ;;
+        3) install_hysteria2 ;;
+        4) install_trojango ;;
+        5) install_snell ;;
+        6) install_warp ;;
+        7) install_all ;;
+        8) show_commands ;;
+        9) uninstall_script ;;
+        99) install_common_tools ;;
+        0) exit 0 ;;
+        *) echo -e "${RED}请输入正确的数字 [0-9]${PLAIN}" && sleep 2 && main ;;
+    esac
+}
+
+# 处理命令行参数
+if [[ $1 == "y" || $1 == "Y" ]]; then
+    # 如果有y参数，直接安装所有工具
+    install_all
+else
+    # 否则显示主菜单
+    main
+fi
