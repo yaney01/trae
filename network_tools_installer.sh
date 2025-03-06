@@ -116,7 +116,7 @@ install_common_tools() {
     elif command -v dnf &> /dev/null; then
         dnf update
         dnf install -y wget curl git nano vim unzip
-·    elif command -v brew &> /dev/null; then
+    elif command -v brew &> /dev/null; then
         brew update
         brew install wget curl git nano vim unzip
     else
