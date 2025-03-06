@@ -24,10 +24,11 @@ show_menu() {
     echo -e "${YELLOW}5.${PLAIN} 安装 snell"
     echo -e "${YELLOW}6.${PLAIN} 安装 warp"
     echo -e "${YELLOW}7.${PLAIN} 全部安装"
+    echo -e "${YELLOW}8.${PLAIN} 查看安装命令"
     echo -e "${YELLOW}99.${PLAIN} 安装常用工具"
     echo -e "${YELLOW}0.${PLAIN} 退出脚本"
     echo ""
-    read -p "请输入数字 [0-7]: " num
+    read -p "请输入数字 [0-8]: " num
 }
 
 # 安装 sing-box
