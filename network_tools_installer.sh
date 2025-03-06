@@ -138,47 +138,4 @@ uninstall_script() {
         echo -e "${GREEN}开始卸载脚本...${PLAIN}"
         # 删除可能存在的临时文件
         rm -f snell.sh menu.sh hysteria.sh
-        # 删除脚本自身
-        rm -f "$0"
-        echo -e "${GREEN}脚本已成功卸载！${PLAIN}"
-        exit 0
-    else
-        echo -e "${GREEN}已取消卸载操作${PLAIN}"
-        echo ""
-        read -p "按回车键返回主菜单" enter
-        main
-    fi
-}
-
-# 主程序
-main() {
-    clear_screen
-    show_menu
-    
-    case "${num}" in
-        1) install_singbox ;;  
-        2) install_3xui ;;  
-        3) install_hysteria2 ;;  
-        4) install_trojango ;;  
-        5) install_snell ;;  
-        6) install_warp ;;  
-        7) install_all ;;  
-        8) echo "功能待实现" && read -p "按回车键返回主菜单" enter && main ;;
-        9) uninstall_script ;;
-        99) install_common_tools ;;
-        0) exit 0 ;;  
-        *) echo -e "${RED}请输入正确的数字 [0-9]${PLAIN}" 
-           echo ""
-           read -p "按回车键返回主菜单" enter
-           main ;;
-    esac
-}
-
-# 检查是否有快捷键参数
-if [ "$1" = "-y" ] || [ "$1" = "y" ]; then
-    install_all
-    exit 0
-fi
-
-# 执行主程序
-main
+        # 删除脚本
